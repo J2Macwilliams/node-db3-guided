@@ -36,3 +36,33 @@ join Product as p
     on od.productId = p.id
 join Supplier as s
     on s.id = p.SupplierId;
+
+
+    -- a join is the same as an "inner join"
+
+select distinct c.companyName as Customer
+from customer as c
+join [order] as o 
+on c.id = o.customerid;--16789
+order by c.companyName;
+
+select * from customer;
+
+select * from [order]
+--delete from [order]
+where customerId = 'ALFKI';
+
+-- ----------------------
+-- a join is the same as an "inner join"
+select distinct c.id, c.CompanyName
+from customer as c 
+join [order] as o on c.id = o.customerId
+order by c.id; -- 16589 (90 unique customers)
+-- all the customer, even if they have no orders
+select c.id, c.companyName as Customer, o.Id 
+from customer as c
+left join [order] as o on c.id = o.customerId
+order by c.id;
+select * from [order]
+-- delete from [order]
+where customerId = 'ALFKI';
